@@ -10,11 +10,11 @@
        <key>Developer Identifier</key>
        <string>9M9D8FMTJ9</string>
        <key>CFBundleVersion</key>
-       <string>1.0.2</string>
+       <string>1.0.3</string>
        <key>CFBundleShortVersionString</key>
-       <string>1.0.2</string>
+       <string>1.0.3</string>
        <key>URL</key>
-       <string>http://stekoe.de/images/downloads/apfeltalk/extension/apfeltalk.safariextz</string>
+       <string>https://github.com/SteKoe/plumbum/raw/master/apfeltalk.safariextz</string>
      </dict>
    </array>
 </dict>
