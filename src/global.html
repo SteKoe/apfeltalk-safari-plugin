@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>global HTML page</title>
+<script type="text/javascript">
+	function readSettings(event)
+	{
+		var excludedForums = safari.extension.settings.excludedForums;
+		var changeSearch = safari.extension.settings.changeForumSearch;
+		
+		var settings = {
+			"excludedForums": excludedForums,
+			"changeSearch": changeSearch
+		};
+		
+		event.target.page.dispatchMessage("settings", settings);
+	}
+	 
+	function respondToMessage(theMessageEvent) {	
+		if(theMessageEvent.name == "readSettings") {
+			readSettings(theMessageEvent);
+		}
+	}
+ 
+    safari.application.addEventListener("message", respondToMessage, false);
+</script>
+</head>
+<body>
+</body>
+</html>
