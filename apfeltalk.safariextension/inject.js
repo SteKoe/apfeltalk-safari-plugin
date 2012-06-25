@@ -43,10 +43,8 @@ function whatsNew(exclusions)
 			{
 				start = start+('exclude=').length;
 			
-			
 				var current_exclusions = url.substr(start);
 				var end = current_exclusions.indexOf('&');
-				console.log(end);
 				
 				if(end != -1)
 					current_exclusions = url.substr(start, end);
@@ -64,10 +62,6 @@ function whatsNew(exclusions)
 					var new_end_url = url.substr(start+end);
 				else
 					var new_end_url = "";
-				
-				console.log(new_url);
-				console.log(current_exclusions);
-				console.log(new_end_url);
 				
 				new_href = new_url+current_exclusions+new_end_url;
 			}
