@@ -33,6 +33,8 @@ function whatsNew(exclusions)
 			var url = old_href;
 			var new_href = url;
 			var start = 0;
+			
+			// No exclusions set by board software
 			if((start = url.lastIndexOf('exclude')) == -1)
 			{
 				new_href = url + "&exclude="+exclusions;
@@ -41,8 +43,10 @@ function whatsNew(exclusions)
 			{
 				start = start+('exclude=').length;
 			
+			
 				var current_exclusions = url.substr(start);
 				var end = current_exclusions.indexOf('&');
+				console.log(end);
 				
 				if(end != -1)
 					current_exclusions = url.substr(start, end);
@@ -55,7 +59,16 @@ function whatsNew(exclusions)
 					current_exclusions = exclusions;
 			
 				var new_url = url.substr(0,start);
-				var new_end_url = url.substr(start+end);
+				
+				if(end != -1)
+					var new_end_url = url.substr(start+end);
+				else
+					var new_end_url = "";
+				
+				console.log(new_url);
+				console.log(current_exclusions);
+				console.log(new_end_url);
+				
 				new_href = new_url+current_exclusions+new_end_url;
 			}
 	
