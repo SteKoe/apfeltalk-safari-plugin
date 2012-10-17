@@ -3,6 +3,12 @@
 <plist version="1.0">
 <array>
 	<dict>
+		<key>Title</key>
+		<string>"Was ist neu?"-Schaltfläche</string>
+		<key>Type</key>
+		<string>Group</string>
+	</dict>
+	<dict>
 		<key>DefaultValue</key>
 		<string></string>
 		<key>Key</key>
@@ -11,6 +17,26 @@
 		<string>Liste ausgeschlossener Foren-IDs</string>
 		<key>Type</key>
 		<string>TextField</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<real>1</real>
+		<key>FalseValue</key>
+		<real>0.0</real>
+		<key>Key</key>
+		<string>overwriteServerExclusions</string>
+		<key>Title</key>
+		<string>Serverseitige Einstellungen überschreiben?</string>
+		<key>TrueValue</key>
+		<real>1</real>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>Title</key>
+		<string>Weitere Einstellungen</string>
+		<key>Type</key>
+		<string>Group</string>
 	</dict>
 	<dict>
 		<key>DefaultValue</key>

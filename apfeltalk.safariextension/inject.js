@@ -10,17 +10,16 @@ function readSettings()
 /* SET THE SETTINGS */
 function setSettings(settings)
 {
-	whatsNew(settings.excludedForums);
+	whatsNew(settings.excludedForums, settings.overwriteServerExclusions);
 	changeSearch(settings.changeSearch);
-	tapatalk();
 }
 
 /* MANIPULATE SEARCH */
-function whatsNew(exclusions)
+function whatsNew(exclusions, overwrite)
 {
 	if(exclusions.length == 0)
 		return;
-		 
+ 
 	var elements = document.getElementsByClassName('navtab');
 	for(var i in elements)
 	{
@@ -33,6 +32,12 @@ function whatsNew(exclusions)
 			var url = old_href;
 			var new_href = url;
 			var start = 0;
+
+			// Overwrite server-settings
+			if(overwrite)
+			{
+				var url = url.replace(/(exclude[=0-9,]*$)|(&exclude[=0-9,]*&)/gi,"");
+			}
 			
 			// No exclusions set by board software
 			if((start = url.lastIndexOf('exclude')) == -1)
@@ -50,7 +55,7 @@ function whatsNew(exclusions)
 					current_exclusions = url.substr(start, end);
 				else
 					current_exclusions = url.substr(start);
-			
+
 				if(current_exclusions.length > 0)
 					current_exclusions += ","+exclusions;
 				else
@@ -108,6 +113,20 @@ function getAnswer(theMessageEvent) {
 			setSettings(theMessageEvent.message);
 			break;
 	}
+}
+
+function getIndicesOf(searchStr, str, caseSensitive) {
+    var startIndex = 0, searchStrLen = searchStr.length;
+    var index, indices = [];
+    if (!caseSensitive) {
+        str = str.toLowerCase();
+        searchStr = searchStr.toLowerCase();
+    }
+    while ((index = str.indexOf(searchStr, startIndex)) > -1) {
+        indices.push(index);
+        startIndex = index + searchStrLen;
+    }
+    return indices;
 }
 
 safari.self.addEventListener("message", getAnswer, false);
