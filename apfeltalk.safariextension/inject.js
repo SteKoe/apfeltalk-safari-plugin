@@ -11,19 +11,47 @@ function readSettings()
 function setSettings(settings)
 {
 	whatsNew(settings.excludedForums, settings.overwriteServerExclusions);
-	changeSearch(settings.changeSearch);
+	changeSearch(settings.changeForumSearch);
+	
+	if(settings.createCommentsLink) createCommentsLink();
+}
+
+/* Kommentaranzeige im Magazin leitet durch Klick direkt zu den Kommentaren weiter */
+function createCommentsLink()
+{
+	var _elements = document.getElementById('section_content');
+	if(_elements == null)
+		return;
+		
+	console.log(_elements);
+	elements = _elements.getElementsByTagName('div');
+	
+	for(var i in elements)
+	{
+		if(elements[i].tagName == "DIV" && elements[i].className.indexOf('fullwidth') != -1)
+		{
+			var article = elements[i];
+			var title = article.getElementsByClassName('title')[0];
+			var href = title.getElementsByTagName('a')[0].href+"#comments";
+			var commentnumber = article.getElementsByClassName('commentnumber')[0];
+			commentnumber.setAttribute('data-href', href);
+			commentnumber.onclick = function() {
+				location.href = this.getAttribute('data-href');
+			}
+			commentnumber.style.cursor = "pointer";
+		}	
+	}
 }
 
 /* MANIPULATE SEARCH */
 function whatsNew(exclusions, overwrite)
 {
-	if(exclusions.length == 0)
-		return;
- 
-	var elements = document.getElementsByClassName('navtab');
+ 	var wrappingElement = document.getElementById('navbar');
+	var elements = wrappingElement.getElementsByTagName('a');
+	
 	for(var i in elements)
 	{
-		if(elements[i].innerHTML == "Was ist neu?")
+		if(elements[i].innerHTML == "Was ist neu?" || elements[i].innerHTML == "Neue Beiträge")
 		{
 			var element = elements[i];
 			var old_href = element.getAttribute('href');
@@ -72,8 +100,6 @@ function whatsNew(exclusions, overwrite)
 			}
 	
 			element.setAttribute('href', new_href);
-	
-			break;
 		}
 	}
 }

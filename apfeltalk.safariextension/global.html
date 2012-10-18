@@ -10,8 +10,9 @@
 		
 		var settings = {
 			"excludedForums": excludedForums,
-			"changeSearch": changeSearch,
-			"overwriteServerExclusions": safari.extension.settings.overwriteServerExclusions
+			"changeForumSearch": changeSearch,
+			"overwriteServerExclusions": safari.extension.settings.overwriteServerExclusions,
+			"createCommentsLink": safari.extension.settings.createCommentsLink
 		};
 		
 		event.target.page.dispatchMessage("settings", settings);

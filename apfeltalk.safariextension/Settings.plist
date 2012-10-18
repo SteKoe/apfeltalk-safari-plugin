@@ -4,7 +4,7 @@
 <array>
 	<dict>
 		<key>Title</key>
-		<string>"Was ist neu?"-Schaltfläche</string>
+		<string>"Was ist neu?" und "Neue Beiträge"-Schaltfläche</string>
 		<key>Type</key>
 		<string>Group</string>
 	</dict>
@@ -47,6 +47,20 @@
 		<string>changeForumSearch</string>
 		<key>Title</key>
 		<string>Forensuche auf Google umleiten</string>
+		<key>TrueValue</key>
+		<real>1</real>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<real>1</real>
+		<key>FalseValue</key>
+		<real>0.0</real>
+		<key>Key</key>
+		<string>createCommentsLink</string>
+		<key>Title</key>
+		<string>Kommentaranzeige im Magazin als Link zu den Kommentaren</string>
 		<key>TrueValue</key>
 		<real>1</real>
 		<key>Type</key>
