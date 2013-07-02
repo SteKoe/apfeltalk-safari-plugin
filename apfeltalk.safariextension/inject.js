@@ -14,8 +14,18 @@ function setSettings(settings)
 	changeSearch(settings.changeForumSearch);
 	
 	addKarmaButtonToComments();
-		
+	
+	if(settings.sortNewsCommentsForumByDate) sortNewsCommentsForumByDate();
 	if(settings.createCommentsLink) createCommentsLink();
+}
+
+function sortNewsCommentsForumByDate() {
+	var href = window.location.href;
+	
+	if(href.indexOf('news-kommentare-f202') != -1 && href.indexOf('?') == -1) {
+		href = href + "?sort=lastpost&order=desc";
+		window.location.href = href;
+	}
 }
 
 function addKarmaButtonToComments() {
@@ -55,8 +65,7 @@ function createCommentsLink()
 	var _elements = document.getElementById('section_content');
 	if(_elements == null)
 		return;
-		
-	console.log(_elements);
+
 	elements = _elements.getElementsByTagName('div');
 	
 	for(var i in elements)
