@@ -13,7 +13,40 @@ function setSettings(settings)
 	whatsNew(settings.excludedForums, settings.overwriteServerExclusions);
 	changeSearch(settings.changeForumSearch);
 	
+	addKarmaButtonToComments();
+		
 	if(settings.createCommentsLink) createCommentsLink();
+}
+
+function addKarmaButtonToComments() {
+	var comments = document.getElementById('node_comments');
+	if(comments != null) {
+		var commentHeaders = comments.getElementsByClassName('postbit_headers');
+		
+		if(commentHeaders != null) {
+			for(headerIndex in commentHeaders) {
+				var commentHeader = commentHeaders[headerIndex];
+				var postControls = commentHeader.getElementsByClassName('postcontrols')[0];			
+				if(typeof postControls == 'undefined') 
+					return;
+					
+				if(typeof(commentHeader) == 'object') {
+					var reportLink = commentHeader.getElementsByClassName('report')[0];
+					
+					// Extract the post ID from report link
+					var reportLinkHref = reportLink.href;
+					reportLinkHref = reportLinkHref.substr(reportLinkHref.indexOf('?p=')+3);
+					var postId = reportLinkHref.substr(0, reportLinkHref.indexOf('&'));
+					
+					var replyButton = postControls.getElementsByClassName('reply')[0].parentNode;
+					
+					var li = document.createElement('li');
+					li.innerHTML = '<a href="http://www.apfeltalk.de/forum/reputation.php?do=addreputation&p='+postId+'"><img src="images/buttons/reputation-40b.png" alt="Karma geben"></a>';
+					postControls.insertBefore(li, replyButton);
+				}
+			}
+		}
+	}
 }
 
 /* Kommentaranzeige im Magazin leitet durch Klick direkt zu den Kommentaren weiter */
